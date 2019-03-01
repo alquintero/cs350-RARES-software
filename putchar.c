@@ -19,12 +19,12 @@ void HERA_main() {
 
   // putchar_ord with string...
   SET(R3, string_output)
-  LOAD(R5, 0, R3) // R5 has the length of the string
+  LOAD(R4, 0, R3) // R4 has the length of the string
   INC(R3, 1) // R3 has the first character of the string
   LABEL(get_string)
     CALL(FP_alt, putchar_ord)
     INC(R3, 1) // R3 goes to the next character
-    DEC(R5, 1) // decrement the number of characters left -- THIS WILL SET THE FLAG FOR THE BRANCH
+    DEC(R4, 1) // decrement the number of characters left -- THIS WILL SET THE FLAG FOR THE BRANCH
     BNZR(get_string)
 
   HALT()
