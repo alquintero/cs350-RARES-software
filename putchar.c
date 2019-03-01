@@ -2,8 +2,8 @@
 #include <HERA.h>
 
 //Two parameters for putchar function: character and terminal
-//R1: holds the character
-//R2: holds the terminal (0 = terminal 1, 1 = terminal 2)
+//R1: holds the terminal (0 = terminal 1, 1 = terminal 2)
+//R2: holds the character
 
 void HERA_main() {
   DLABEL(char_output)
@@ -14,6 +14,7 @@ void HERA_main() {
 
   // putchar_ord with 1 character
   SET(R3, char_output)
+  SET(R1, 0) // R1 has the terminal (proxy: terminal 1)
   CALL(FP_alt, putchar_ord)
 
   // putchar_ord with string...
@@ -28,10 +29,9 @@ void HERA_main() {
 
   HALT()
 
-  // RETURNS THE CHARACTER FOR HARDWARE IN R1
-  LABEL(putchar_ord) // R3 has the character, R2 has which screen
-    LOAD(R1, 0, R3) // load the current character at location R3 into R1
-    SET(R2, 0) // R2 has the screen (proxy: screen 1)
+  // RETURNS THE CHARACTER FOR HARDWARE IN R2
+  LABEL(putchar_ord) // R1 has which screen, R2 has the character
+    LOAD(R2, 0, R3) // load the current character at location R3 into R2
     RETURN(FP_alt, PC_ret)
 
 }
