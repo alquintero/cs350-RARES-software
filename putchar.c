@@ -1,6 +1,10 @@
 #define  WROTE_CS356_IO 1
 #include <HERA.h>
 
+//Two parameters for putchar function: character and temrinal
+//R1: holds the character
+//R2: holds the terminal (0 = terminal 1, 1 = terminal 2)
+
 void HERA_main() {
   DLABEL(char_output)
     INTEGER('a')
