@@ -1,7 +1,7 @@
 #define  WROTE_CS356_IO 1
 #include <HERA.h>
 
-//Two parameters for putchar function: character and temrinal
+//Two parameters for putchar function: character and terminal
 //R1: holds the character
 //R2: holds the terminal (0 = terminal 1, 1 = terminal 2)
 
