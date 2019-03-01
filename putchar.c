@@ -3,7 +3,7 @@
 
 //Two parameters for putchar function: character and terminal
 //R1: holds the terminal (0 = terminal 1, 1 = terminal 2)
-//R2: holds the character
+//R2: holds the character (loaded from R3 memory address)
 
 void HERA_main() {
   DLABEL(char_output)
