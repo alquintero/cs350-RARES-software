@@ -8,7 +8,8 @@
 6/ 20cd    	// CALL
 7/ 0    	// HALT
 8/ 4203    	// (matching labels: putchar_ord) LOAD
-9/ 21cd    	// RETURN
+9/ 2412    	// OPCODE
+a/ 21cd    	// RETURN
 // .DATA:
 c000/ c008
 c001/ 61 
