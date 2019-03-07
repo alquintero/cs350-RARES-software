@@ -32,6 +32,5 @@ void HERA_main() {
   // RETURNS THE CHARACTER FOR HARDWARE IN R2
   LABEL(putchar_ord) // R1 has which screen, R2 has the character
     LOAD(R2, 0, R3) // load the current character at location R3 into R2
+    OPCODE(9234) //0010010000010010
     RETURN(FP_alt, PC_ret)
-
-}
