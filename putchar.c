@@ -16,7 +16,7 @@ void HERA_main() {
   SET(R3, char_output)
   SET(R1, 0) // R1 has the terminal (proxy: terminal 1)
   CALL(FP_alt, putchar_ord)
-
+/*
   // putchar_ord with string...
   SET(R3, string_output)
   LOAD(R4, 0, R3) // R4 has the length of the string
@@ -26,7 +26,7 @@ void HERA_main() {
     INC(R3, 1) // R3 goes to the next character
     DEC(R4, 1) // decrement the number of characters left -- THIS WILL SET THE FLAG FOR THE BRANCH
     BNZR(get_string)
-
+*/
   HALT()
 
   // RETURNS THE CHARACTER FOR HARDWARE IN R2
