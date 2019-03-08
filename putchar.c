@@ -36,3 +36,4 @@ void HERA_main() {
     LOAD(R2, 0, R3) // load the current character at location R3 into R2
     OPCODE(9234) //0010010000010010
     RETURN(FP_alt, PC_ret)
+  }
