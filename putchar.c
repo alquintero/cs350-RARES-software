@@ -28,7 +28,7 @@ void HERA_main() {
     INC(R3, 1) // R3 goes to the next character
     DEC(R4, 1) // decrement the number of characters left -- THIS WILL SET THE FLAG FOR THE BRANCH
     BNZR(get_string)
-*/
+
   HALT()
 
   // RETURNS THE CHARACTER FOR HARDWARE IN R2
