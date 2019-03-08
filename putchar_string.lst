@@ -1,0 +1,25 @@
+// .CODE:
+0/ e301    	// SETLO_FOR_SET
+1/ f3c0    	// SETHI_FOR_SET
+2/ e100    	// SETLO_FOR_SET
+3/ f100    	// SETHI_FOR_SET
+4/ 4403    	// LOAD
+5/ 3380    	// INC
+6/ ed0d    	// (matching labels: get_string) SETLO_FOR_SET
+7/ fd00    	// SETHI_FOR_SET
+8/ 20cd    	// CALL
+9/ 3380    	// INC
+a/ 34c0    	// DEC
+b/ 9fb    	// BNZR
+c/ 0    	// HALT
+d/ 4203    	// (matching labels: putchar_ord) LOAD
+e/ 2412    	// OPCODE
+f/ 21cd    	// RETURN
+// .DATA:
+c000/ c007
+c001/ 5 
+c002/ 48
+c003/ 65
+c004/ 6c
+c005/ 6c
+c006/ 6f
