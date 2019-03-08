@@ -6,16 +6,16 @@
 //R2: holds the character (loaded from R3 memory address)
 
 void HERA_main() {
-  DLABEL(char_output)
-    INTEGER('a')
+/*  DLABEL(char_output)
+    INTEGER('a') */
 
   DLABEL(string_output)
     LP_STRING("Hello")
 
-  // putchar_ord with 1 character
-  SET(R3, char_output)
+//  putchar_ord with 1 character
+//  SET(R3, char_output)
   SET(R1, 0) // R1 has the terminal (proxy: terminal 1)
-  CALL(FP_alt, putchar_ord)
+//  CALL(FP_alt, putchar_ord)
 
   // putchar_ord with string...
   SET(R3, string_output)
