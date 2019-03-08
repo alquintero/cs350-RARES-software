@@ -1,3 +1,5 @@
+//THIS IS FOR ONE CHARACTER INPUT, SWITCH COMMENTED SECTIONS TO GET STRING INPUT
+
 #define  WROTE_CS356_IO 1
 #include <HERA.h>
 
@@ -26,12 +28,11 @@ void HERA_main() {
     INC(R3, 1) // R3 goes to the next character
     DEC(R4, 1) // decrement the number of characters left -- THIS WILL SET THE FLAG FOR THE BRANCH
     BNZR(get_string)
-
+*/
   HALT()
 
   // RETURNS THE CHARACTER FOR HARDWARE IN R2
   LABEL(putchar_ord) // R1 has which screen, R2 has the character
     LOAD(R2, 0, R3) // load the current character at location R3 into R2
+    OPCODE(9234) //0010010000010010
     RETURN(FP_alt, PC_ret)
-
-}

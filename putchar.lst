@@ -1,0 +1,23 @@
+FOR ONE CHARACTER INPUT:
+
+// .CODE:
+0/ e301    	// SETLO_FOR_SET
+1/ f3c0    	// SETHI_FOR_SET
+2/ e100    	// SETLO_FOR_SET
+3/ f100    	// SETHI_FOR_SET
+4/ ed08    	// SETLO_FOR_SET
+5/ fd00    	// SETHI_FOR_SET
+6/ 20cd    	// CALL
+7/ 0    	// HALT
+8/ 4203    	// (matching labels: putchar_ord) LOAD
+9/ 2412    	// OPCODE
+a/ 21cd    	// RETURN
+// .DATA:
+c000/ c008
+c001/ 61 
+c002/ 5 
+c003/ 48
+c004/ 65
+c005/ 6c
+c006/ 6c
+c007/ 6f
