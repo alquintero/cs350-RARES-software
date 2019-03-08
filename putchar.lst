@@ -1,3 +1,5 @@
+FOR ONE CHARACTER INPUT:
+
 // .CODE:
 0/ e301    	// SETLO_FOR_SET
 1/ f3c0    	// SETHI_FOR_SET
