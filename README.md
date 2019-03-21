@@ -10,4 +10,4 @@ After useful discussion with our hardware team and the assignment specifications
 
 
 *For 3/26/18 Due Date: Polling.*
-In our discussion with the hardware team, we decided to store the keyboard (0 for keyboard 1 and 1 for keyboard 2) in R6 and the character in R7 (not sure if we should use R3 and R4 since we used them for putchar and may not want to overwrite these values).
+In our discussion with the hardware team, we decided to store the keyboard (0 for keyboard 1 and 1 for keyboard 2) in R3 and the character in R4 for getchar.
