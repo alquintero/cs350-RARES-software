@@ -15,12 +15,14 @@
 void HERA_main()
 {
   SET(R9, 1) //for checking for character
-  SET(R8, 10) //for checking for new line
+  
   LABEL(infinite_loop)  // while(true)
     SET(R10, 50)
     LABEL(simulate_os)  // for (a fixed number of times); // simulate OS
       DEC(R10, 1)
       BNZ(simulate_os)
+    
+    SET(R10, 10) //for checking for new line; by doing this,leaving more registers available
     
     //CHECKING IF KEYBOARD1
     OPCODE(9733) //0010 0110 0000 0101 for loading into R5, if keyboard1 is ready
