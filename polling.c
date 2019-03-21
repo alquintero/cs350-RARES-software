@@ -29,7 +29,7 @@ void HERA_main()
       CMP(R6, 1)
       BNZ(done_checking) // if keyboard2 has a character
         CALL(FP_alt, getchar_ord)
-        CMP(R4, 0x0A)
+        CMP(R2, 0x0A)
         BNZ(not_newline) // if that character is a newline
           // load from buffer?
           MOVE(R1, R6) // set which terminal to R1 for putchar
