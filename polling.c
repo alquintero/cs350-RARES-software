@@ -23,7 +23,7 @@ void HERA_main()
     
     //CHECKING IF KEYBOARD1
     OPCODE(9733) //0010 0110 0000 0101 for loading into R5, if keyboard1 is ready
-    CMP(R5, 1) // returns 0 if equal
+    DEC(R5, 1)
     BNZ(check_keyboard2) // if keyboard1 does not have a character, branch
       //keyboard1 has a character
       CALL(FP_alt, getchar_ord) // Display that character onto TTY0
@@ -33,11 +33,11 @@ void HERA_main()
     //CHECKING IF KEYBOARD2
     LABEL(check_keyboard2)
     OPCODE(9989) //0010 0111 0000 0101 for loading into R6, if keyboard2 is ready
-      CMP(R6, 1) // returns 0 if equal
+      DEC(R6, 1) // returns 0 if equal
       BNZ(done_checking) // if keyboard2 does not have a character, branch
         //keyboard2 has a character
         CALL(FP_alt, getchar_ord)
-        CMP(R2, 10) // comparing character to new line (ascii)
+        DEC(R2, 10) // comparing character to new line (ascii)
         BNZ(not_newline) // if that character is not a newline, branch
           //it's a newline
           //loop through characters in memory and getchar each one ?
