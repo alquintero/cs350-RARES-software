@@ -40,7 +40,7 @@ void HERA_main()
       BNZ(done_checking) // if keyboard2 does not have a character, branch
         //keyboard2 has a character
         CALL(FP_alt, getchar_ord)
-        CMP(R2, R8) // comparing character to new line (ascii)
+        CMP(R2, R10) // comparing character to new line (ascii)
         BNZ(not_newline) // if that character is not a newline, branch
           //it's a newline
           //loop through characters in memory and getchar each one ?
