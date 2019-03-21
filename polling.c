@@ -4,9 +4,10 @@
 //Two parameters for putchar function: character and terminal
 //R1: holds the terminal (0 = terminal 1, 1 = terminal 2)
 //R2: holds the character (loaded from R4)
-//R4: ASCII from keyboardN
-//R5: keyboard 1 has a letter? (0 = no, 1 = yes)
-//R6: keyboard 2 has a letter? (0 = no, 1 = yes)
+//R3: holds the keyboard (0 = keyboard 1, 1 = keyboard 2) we will be checking keyboard 1 first based on rough algorithm provided by JD
+//R4: holds address of where ASCII from keyboard N is stored (provides more versatility, we don't need to put it in R4 every time) 
+//R5: does keyboard 1 have a character? (0 = no, 1 = yes)
+//R6: does keyboard 2 have a character? (0 = no, 1 = yes)
 
 void HERA_main()
 {
@@ -18,14 +19,16 @@ void HERA_main()
       BNZ(simulate_os)
 
     // OPCODE() for loading into R5, if keyboard 1 is ready
+    OPCODE(9733) //0010 0110 0000 0101
     CMP(R5, 1)
     BNZ(check_keyboard2) // if keyboard0 has a character
       CALL(FP_alt, getchar_ord) // Display that character onto TTY0
       MOVE(R1, R5) // set which terminal to R1 for putchar
       CALL(FP_alt, putchar_ord) // Display that character onto TTY0
 
-    LABLE(check_keyboard2)
+    LABEL(check_keyboard2)
     // OPCODE() for loading into R6, if keyboard 2 is ready
+    OPCODE(9989) //0010 0111 0000 0101
       CMP(R6, 1)
       BNZ(done_checking) // if keyboard2 has a character
         CALL(FP_alt, getchar_ord)
@@ -45,17 +48,17 @@ void HERA_main()
 
 
   // RETURNS THE ASCII CHARACTER IN R2
-  // instructions say getchar takes parameter for "which keyboard"...
-  // not sure how that applies here?
   LABEL(getchar_ord)
     MOVE(R2, R4) // put the ascii character into R2 for putchar
-    OPCODE(???)
+    SET(R3, 1) //which keyboard we are getting data from
+    SET(R4, 4) //address of where we are putting data from keyboard
+    OPCODE(9524) //0010 0101 0011 0100
     RETURN(FP_alt, PC_ret)
 
 
   // RETURNS THE CHARACTER FOR HARDWARE IN R2
   LABEL(putchar_ord) // R1 has which screen, R2 has the character
-    OPCODE(9234) //0010010000010010
+    OPCODE(9234) //0010 0100 0001 0010
     RETURN(FP_alt, PC_ret)
 
 }
