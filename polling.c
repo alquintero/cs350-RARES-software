@@ -16,7 +16,7 @@ void HERA_main()
 {
 
   LABEL(infinite_loop)  // while(true)
-    LOAD(R10, 50)
+    SET(R10, 50)
     LABEL(simulate_os)  // for (a fixed number of times); // simulate OS
       DEC(R10, 1)
       BNZ(simulate_os)
