@@ -1,3 +1,6 @@
+/* TEAM NAME: RED TEAM (Amanda Quintero, Sophia Trump, Rohan Shukla, Emily Lobel, Russell Gerhard)
+*/
+
 #define  WROTE_CS356_IO 1
 #include <HERA.h>
 
