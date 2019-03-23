@@ -1,0 +1,38 @@
+// .CODE:
+0/ e700    	// (matching labels: infinite_loop) SETLO_FOR_SET
+1/ f700    	// SETHI_FOR_SET
+2/ e903    	// SETLO_FOR_SET
+3/ f900    	// SETHI_FOR_SET
+4/ 39c0    	// (matching labels: simulate_os) DEC
+5/ eb04    	// SETLO_FOR_SET
+6/ fb00    	// SETHI_FOR_SET
+7/ 190b    	// BNZ
+8/ 2605    	// OPCODE
+9/ e901    	// SETLO_FOR_SET
+a/ f900    	// SETHI_FOR_SET
+b/ 3068    	// FON
+c/ b059    	// SUB
+d/ eb18    	// SETLO_FOR_SET
+e/ fb00    	// SETHI_FOR_SET
+f/ 190b    	// BNZ
+10/ e300    	// SETLO_FOR_SET
+11/ f300    	// SETHI_FOR_SET
+12/ ed1c    	// SETLO_FOR_SET
+13/ fd00    	// SETHI_FOR_SET
+14/ 20cd    	// CALL
+15/ ed20    	// SETLO_FOR_SET
+16/ fd00    	// SETHI_FOR_SET
+17/ 20cd    	// CALL
+18/ eb00    	// (matching labels: done_checking check_keyboard2) SETLO_FOR_SET
+19/ fb00    	// SETHI_FOR_SET
+1a/ 100b    	// BR
+1b/ 0    	// HALT
+1c/ 2534    	// (matching labels: getchar_ord) OPCODE
+1d/ 9130    	// OR
+1e/ 9240    	// OR
+1f/ 21cd    	// RETURN
+20/ 2412    	// (matching labels: putchar_ord) OPCODE
+21/ 21cd    	// RETURN
+// .DATA:
+c000/ c001
+
