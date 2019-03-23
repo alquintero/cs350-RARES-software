@@ -90,9 +90,10 @@ void HERA_main()
 
   // RETURNS THE ASCII CHARACTER IN R2
   LABEL(getchar_ord)
+    OPCODE(9524) //0010 0101 0011 0100
+    //moves must happen after OPCODE call to actually move data from correct registers
     MOVE(R1, R3) // put which terminal into R1 for putchar
     MOVE(R2, R4) // put the ascii character into R2 for putchar
-    OPCODE(9524) //0010 0101 0011 0100
     RETURN(FP_alt, PC_ret)
 
 
