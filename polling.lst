@@ -1,0 +1,79 @@
+// .CODE:
+0/ e903    	// (matching labels: infinite_loop) SETLO_FOR_SET
+1/ f900    	// SETHI_FOR_SET
+2/ 39c0    	// (matching labels: simulate_os) DEC
+3/ eb02    	// SETLO_FOR_SET
+4/ fb00    	// SETHI_FOR_SET
+5/ 190b    	// BNZ
+6/ 2605    	// OPCODE
+7/ e901    	// SETLO_FOR_SET
+8/ f900    	// SETHI_FOR_SET
+9/ 3068    	// FON
+a/ b059    	// SUB
+b/ eb16    	// SETLO_FOR_SET
+c/ fb00    	// SETHI_FOR_SET
+d/ 190b    	// BNZ
+e/ e300    	// SETLO_FOR_SET
+f/ f300    	// SETHI_FOR_SET
+10/ ed45    	// SETLO_FOR_SET
+11/ fd00    	// SETHI_FOR_SET
+12/ 20cd    	// CALL
+13/ ed49    	// SETLO_FOR_SET
+14/ fd00    	// SETHI_FOR_SET
+15/ 20cd    	// CALL
+16/ 2706    	// (matching labels: check_keyboard2) OPCODE
+17/ e901    	// SETLO_FOR_SET
+18/ f900    	// SETHI_FOR_SET
+19/ 3068    	// FON
+1a/ b069    	// SUB
+1b/ eb41    	// SETLO_FOR_SET
+1c/ fb00    	// SETHI_FOR_SET
+1d/ 190b    	// BNZ
+1e/ e301    	// SETLO_FOR_SET
+1f/ f300    	// SETHI_FOR_SET
+20/ ed45    	// SETLO_FOR_SET
+21/ fd00    	// SETHI_FOR_SET
+22/ 20cd    	// CALL
+23/ e90a    	// SETLO_FOR_SET
+24/ f900    	// SETHI_FOR_SET
+25/ 3068    	// FON
+26/ b029    	// SUB
+27/ eb3f    	// SETLO_FOR_SET
+28/ fb00    	// SETHI_FOR_SET
+29/ 190b    	// BNZ
+2a/ 6207    	// STORE
+2b/ e700    	// SETLO_FOR_SET
+2c/ f700    	// SETHI_FOR_SET
+2d/ e80a    	// SETLO_FOR_SET
+2e/ f800    	// SETHI_FOR_SET
+2f/ e900    	// SETLO_FOR_SET
+30/ f900    	// SETHI_FOR_SET
+31/ 4409    	// (matching labels: memory_loop) LOAD
+32/ 9240    	// OR
+33/ ed49    	// SETLO_FOR_SET
+34/ fd00    	// SETHI_FOR_SET
+35/ 20cd    	// CALL
+36/ 3068    	// FON
+37/ b048    	// SUB
+38/ eb41    	// SETLO_FOR_SET
+39/ fb00    	// SETHI_FOR_SET
+3a/ 180b    	// BZ
+3b/ 3980    	// INC
+3c/ eb31    	// SETLO_FOR_SET
+3d/ fb00    	// SETHI_FOR_SET
+3e/ 100b    	// BR
+3f/ 6207    	// (matching labels: not_newline) STORE
+40/ 3780    	// INC
+41/ eb00    	// (matching labels: done_checking) SETLO_FOR_SET
+42/ fb00    	// SETHI_FOR_SET
+43/ 100b    	// BR
+44/ 0    	// HALT
+45/ 2534    	// (matching labels: getchar_ord) OPCODE
+46/ 9130    	// OR
+47/ 9240    	// OR
+48/ 21cd    	// RETURN
+49/ 2412    	// (matching labels: putchar_ord) OPCODE
+4a/ 21cd    	// RETURN
+// .DATA:
+c000/ c001
+
