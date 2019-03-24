@@ -59,6 +59,7 @@ void HERA_main()
             //LOOPING THROUGH CHARACTERS (FROM BUFFER) THAT ARE STORED IN MEMORY
             LABEL(memory_loop)
               LOAD(R4, 0, R9) // load the character at location R9 in memory to R4 for putchar
+              MOVE(R2, R4) // put the ascii character into R2 for putchar
               CALL(FP_alt, putchar_ord) //want to ouput both newline and other characters
               CMP(R4, R8) // is the character we just loaded a newline?
                 BZ(done_checking) // yes, it's a new line
@@ -80,14 +81,14 @@ void HERA_main()
   // RETURNS THE ASCII CHARACTER IN R2
   LABEL(getchar_ord)
     OPCODE(9524) //0010 0101 0011 0100
+    MOVE(R1, R3) // put which terminal into R1 for putchar
+    MOVE(R2, R4) // put the ascii character into R2 for putchar
     RETURN(FP_alt, PC_ret)
 
 
   // RETURNS THE CHARACTER FOR HARDWARE IN R2
   LABEL(putchar_ord) // R1 has which screen, R2 has the character
     //moves must happen after OPCODE call to actually move data from correct registers
-    MOVE(R1, R3) // put which terminal into R1 for putchar
-    MOVE(R2, R4) // put the ascii character into R2 for putchar
     OPCODE(9234) //0010 0100 0001 0010
     RETURN(FP_alt, PC_ret)
 
