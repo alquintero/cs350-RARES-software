@@ -53,16 +53,16 @@ void HERA_main()
             //it's a newline
             STORE(R2, 0, R7) // put that character in memory
             SET(R7, 0) // reset for next buffer string that needs to be stored
-            SET(R8, 10) // for checking for newline
-            SET(R9, 0) // start looping from location 0 in memory
+            SET(R8, 10) // for checking when we are finished looping (if newline is found)
+            SET(R9, 0) // for looping from location 0 in memory
             
             //LOOPING THROUGH CHARACTERS (FROM BUFFER) THAT ARE STORED IN MEMORY
             LABEL(memory_loop)
               LOAD(R4, 0, R9) // load the character at location R9 in memory to R4 for putchar
+              CALL(FP_alt, putchar_ord) //want to ouput both newline and other characters
               CMP(R4, R8) // is the character we just loaded a newline?
-                BZ(done_checking) // yes, it's a new line DO WE WANT TO PUTCHAR NEWLINE?
+                BZ(done_checking) // yes, it's a new line
                   // no, it's a character
-                  CALL(FP_alt, putchar_ord)
                   INC(R9, 1) // go to the next place in memory
                   BR(memory_loop) // always branch back because didn't encounter newline in memory
 
@@ -80,14 +80,14 @@ void HERA_main()
   // RETURNS THE ASCII CHARACTER IN R2
   LABEL(getchar_ord)
     OPCODE(9524) //0010 0101 0011 0100
-    //moves must happen after OPCODE call to actually move data from correct registers
-    MOVE(R1, R3) // put which terminal into R1 for putchar
-    MOVE(R2, R4) // put the ascii character into R2 for putchar
     RETURN(FP_alt, PC_ret)
 
 
   // RETURNS THE CHARACTER FOR HARDWARE IN R2
   LABEL(putchar_ord) // R1 has which screen, R2 has the character
+    //moves must happen after OPCODE call to actually move data from correct registers
+    MOVE(R1, R3) // put which terminal into R1 for putchar
+    MOVE(R2, R4) // put the ascii character into R2 for putchar
     OPCODE(9234) //0010 0100 0001 0010
     RETURN(FP_alt, PC_ret)
 
