@@ -52,7 +52,7 @@ void HERA_main()
           //CHECKING IF CHARACTER IS A NEWLINE
           BNZ(not_newline) // if that character is not a newline, branch
             //it's a newline
-            STORE(R7, 0, R2) // put that character in memory
+            STORE(R2, 0, R7) // put that character in memory
             SET(R7, 0) // reset for next buffer string that needs to be stored
             SET(R8, 10) // for checking for newline
             SET(R9, 0) // start looping from location 0 in memory
@@ -69,7 +69,7 @@ void HERA_main()
 
         //CHARACTER IS NOT A NEWLINE
         LABEL(not_newline) //else
-          STORE(R7, 0, R2) // store current character in memory
+          STORE(R2, 0, R7) // store current character (which is in R2) in memory
           INC(R7, 1) // go to the next place in memory
 
     LABEL(done_checking)
