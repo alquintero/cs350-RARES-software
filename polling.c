@@ -44,6 +44,7 @@ void HERA_main()
         CMP(R6, R9) // returns 0 if equal
         BNZ(done_checking) // if keyboard2 does not have a character, branch
           //keyboard2 has a character
+          SET(R3, 1) // set which terminal, to pass to getchar_ord
           CALL(FP_alt, getchar_ord) // get the character
           SET(R9, 10) // for checking newline
           CMP(R2, R9) // comparing character to new line (ascii)
