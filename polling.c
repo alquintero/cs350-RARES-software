@@ -40,7 +40,7 @@ void HERA_main()
 
     //CHECKING IF KEYBOARD2
     LABEL(check_keyboard2)
-    OPCODE(9989) //0010 0111 0000 0101 for loading into R6, if keyboard2 is ready
+    OPCODE(9990) //0010 0111 0000 0110 for loading into R6, if keyboard2 is ready
       SET(R9, 1) //for checking for character
       CMP(R6, R9) // returns 0 if equal
       BNZ(done_checking) // if keyboard2 does not have a character, branch
