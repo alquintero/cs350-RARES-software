@@ -53,32 +53,23 @@ void HERA_main()
           BNZ(not_newline) // if that character is not a newline, branch
             //it's a newline
             STORE(R7, 0, R2) // put that character in memory
-            INC(R7, 1) // go to the next place in memory
-            //loop through characters in memory and output each one
-            SET(R9, 0) // start looking from location 0 in memory
+            SET(R7, 0) // reset for next buffer string that needs to be stored
+            SET(R8, 10) // for checking for newline
+            SET(R9, 0) // start looping from location 0 in memory
             
-            LABEL(buffer_loop)
-              // there are characters in the buffer, so put them
-              LOAD(R4, 0, R9) // load the character at location R9 in memory
-              SET(R9, 10) // for checking for newline
-              CMP(R4, R9) // is the character we just loaded a newline?
-                BZ(done_checking) // yes, so we're done
-                  // no...
-                  SET(R3, 1) // set which terminal to pass to getchar_ord
-                  CALL(FP_alt, getchar_ord)
+            //LOOPING THROUGH CHARACTERS (FROM BUFFER) THAT ARE STORED IN MEMORY
+            LABEL(memory_loop)
+              LOAD(R4, 0, R9) // load the character at location R9 in memory to R4 for putchar
+              CMP(R4, R8) // is the character we just loaded a newline?
+                BZ(done_checking) // yes, it's a new line DO WE WANT TO PUTCHAR NEWLINE?
+                  // no, it's a character
                   CALL(FP_alt, putchar_ord)
-                  SET(R8, 0)
-                  STORE(R9, 0, R8) // clear that place in memory for later use
                   INC(R9, 1) // go to the next place in memory
-                  BR(buffer_loop) // always branch back because didn't encounter newline in memory
+                  BR(memory_loop) // always branch back because didn't encounter newline in memory
 
         //CHARACTER IS NOT A NEWLINE
-        LABEL(not_newline) // else
-          //it's not a newline
-          CALL(FP_alt, getchar_ord) // load from buffer
-          //store character from buffer in memory (need to keep track) ?
-          //store address of starting point in memory in R7 but this only needs to happen once ?
-          STORE(R7, 0, R2) // then put that character in memory
+        LABEL(not_newline) //else
+          STORE(R7, 0, R2) // store current character in memory
           INC(R7, 1) // go to the next place in memory
 
     LABEL(done_checking)
