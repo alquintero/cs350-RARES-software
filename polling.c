@@ -21,7 +21,6 @@ void HERA_main()
 {
 
   LABEL(infinite_loop)  // while(true)
-    SET(R7, 0) // always put characters in buffer from location 0
     SET(R9, 3)
     LABEL(simulate_os)  // for (a fixed number of times); // simulate OS
       DEC(R9, 1)
