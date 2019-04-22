@@ -22,3 +22,12 @@ We used registers to help us keep track of everything. As listed in a comment:
 - R5 and R6 keep track of whether or not keyboard 1 or keyboard 2 respectively have a character (0 = no, 1 = yes)
 - R7 holds the next address to load characters into from the buffer (i.e., memory location)
 - R8 and R9 are placeholders for local operations in the software.
+
+
+## For interrupts:
+
+The interrupt code is stored in memory locations 1000 (for interrupts for keyboard 1) and 2000 (for interrupts for keyboard 2).
+
+The interrupt code for keyboard 1 is handled under Hassem code ed14 - 100b. (this is pasted starting at memory location 1000 in ROM).
+
+The interrupt code for keyboard 2 is handled under Hassem code ed1d - 100b (this is pasted starting at memory location 2000 in ROM).
