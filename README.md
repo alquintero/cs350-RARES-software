@@ -10,8 +10,15 @@ After useful discussion with our hardware team and the assignment specifications
 
 
 *For 3/26/18 Due Date: Polling.*
-In our discussion with the hardware team, we decided to store the keyboard (0 for keyboard 1 and 1 for keyboard 2) in R3 and the character in R4 for getchar.
+In our discussion with the hardware team, for getchar, we decided to store the keyboard (0 for keyboard 1 and 1 for keyboard 2) in R3 and the character in R4.
 
 We decided to follow the outline given to us in JD's lab since it followed the standard idea of polling: continuously check until things need to be updated. Our software consistently keeps track of keyboard 1 and keyboard 2 simultaneously. It adds any input from keyboard 1 directly into terminal 1, but adds any input from keyboard 2 into a buffer. This buffer doesn't go into terminal 2 until our polling function receives the input from keyboard 2 of a newline, which acts as a signal to print the buffer into terminal 2.
 
-We used registers to help us keep track of everything. As listed in a comment, R1 holds the terminal (0 = terminal 1, 1 = terminal 2), R2 holds the character (loaded from R4), R3: holds the keyboard (0 = keyboard 1, 1 = keyboard 2), R4: holds address of where ASCII from keyboard N is stored which provides more versatility, R5 and R6 keeps track of whether or not keyboard 1 or keyboard 2 respectively have a character (0 = no, 1 = yes), and R7 holds the starting point in memory of the buffer. 
+We used registers to help us keep track of everything. As listed in a comment:
+- R1 holds the terminal (0 = terminal 1, 1 = terminal 2)
+- R2 holds the character (loaded from R4)
+- R3: holds the keyboard (0 = keyboard 1, 1 = keyboard 2)
+- R4: holds address of where ASCII from keyboard N is stored (which provides more versatility, since the length of the message is only limited by the amount of free memory, rather than storing the characters directly in registers)
+- R5 and R6 keep track of whether or not keyboard 1 or keyboard 2 respectively have a character (0 = no, 1 = yes)
+- R7 holds the next address to load characters into from the buffer (i.e., memory location)
+- R8 and R9 are placeholders for local operations in the software.
