@@ -74,7 +74,8 @@ void HERA_main()
       STORE(R2, 0, R7) // store current character (which is in R2) in memory
       INC(R7, 1) // go to the next place in memory
 
-    RETURN(FP_alt, PC_ret)
+    LABEL(done_checking)
+      RETURN(FP_alt, PC_ret)
 
 
   // RETURNS THE ASCII CHARACTER IN R2
