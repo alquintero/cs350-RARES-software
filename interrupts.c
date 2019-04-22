@@ -20,7 +20,7 @@
 void HERA_main()
 {
   SET(R6, 1000) //set up for hardware, R6 holds ROM location of K1 handler
-  SET(R8, 2000) //set up for hardware, R8 holds ROM location of K2 handler
+  SET(R8, 2000) //set up for hardware, R8 holds ROM location of K2ß handler
 
   LABEL(infinite_loop)  // while(true)
   BR(infinite_loop)   // infinite loop. simulate os
