@@ -19,9 +19,11 @@
 
 void HERA_main()
 {
+  SET(R6, 1000) //set up for hardware, R6 holds ROM location of K1 handler
+  SET(R8, 2000) //set up for hardware, R8 holds ROM location of K2 handler
 
   LABEL(infinite_loop)  // while(true)
-    BR(infinite_loop)   // infinite loop. simulate os
+  BR(infinite_loop)   // infinite loop. simulate os
 
   CALL(FP_alt, k1_helper_function) // interrupt for keyboard 1 mem location 0100
   BR(infinite_loop) // go back to simulating the OS
