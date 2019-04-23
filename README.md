@@ -24,7 +24,7 @@ We used registers to help us keep track of everything. As listed in a comment:
 - R8 and R9 are placeholders for local operations in the software.
 
 
-## For interrupts:
+*For 4/28/18 Due Date: Interrupts.*
 
 The interrupt code is stored in memory locations 1000 (for interrupts for keyboard 1) and 2000 (for interrupts for keyboard 2).
 
