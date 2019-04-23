@@ -28,6 +28,6 @@ We used registers to help us keep track of everything. As listed in a comment:
 
 *For 4/28/18 Due Date: Interrupts.*
 
-The interrupt code is stored in memory locations 1000 (for interrupts for keyboard 1) and 2000 (for interrupts for keyboard 2).
-The interrupt code for keyboard 1 is handled under Hassem code ed14 - 100b. (this is pasted starting at memory location 1000 in ROM).
-The interrupt code for keyboard 2 is handled under Hassem code ed1d - 100b (this is pasted starting at memory location 2000 in ROM).
+- The interrupt code is stored in memory locations 1000 (for interrupts for keyboard 1) and 2000 (for interrupts for keyboard 2).
+- The interrupt code for keyboard 1 is handled under Hassem code ed14 - 100b. (this is pasted starting at memory location 1000 in ROM).
+- The interrupt code for keyboard 2 is handled under Hassem code ed1d - 100b (this is pasted starting at memory location 2000 in ROM).
