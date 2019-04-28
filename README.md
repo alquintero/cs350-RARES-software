@@ -28,6 +28,14 @@ We used registers to help us keep track of everything. As listed in a comment:
 
 *For 4/28/18 Due Date: Interrupts.*
 
-- The interrupt code is stored in memory locations 1000 (for interrupts for keyboard 1) and 2000 (for interrupts for keyboard 2).
-- The interrupt code for keyboard 1 is handled under Hassem code ed14 - 100b. (this is pasted starting at memory location 1000 in ROM).
-- The interrupt code for keyboard 2 is handled under Hassem code ed1d - 100b (this is pasted starting at memory location 2000 in ROM).
+### Instructions for building:
+
+Please note that the code in interrupts.c is not meant to be run via simulation. Rather, it is designed for our microprocessor found here: https://github.com/alquintero/cs350-RARES-hardware
+
+To run using the microprocessor in the repository above, particular sections of code must be placed in specific locations in the microprocessor's ROM. It is necessary that the code is correctly placed in ROM because particular offsets (used in BRANCH instructions) and changes to the program counter (see the hardware README) rely on specific memory locations for flow of control.
+
+In particular, compile the code in interrupts.c using Hassem. Then, place all code before HALT (up to the BRANCH instruction for infinite_loop) in the first memory locations in ROM. The compiled HALT instruction should be moved and placed in ROM after these. Then, the interrupt handler for keyboard 1 (the function k1_helper_function, which is handled under Hassem code ed14 - 100b) should be pasted starting at memory location 1000 in ROM. The interrupt handler for keyboard 2 (the function k2_helper_function, which is handled under Hassem code ed1d - 100b) should be pasted starting at memory location 2000 in ROM.
+
+#### Conceptual description:
+
+In implementation, our code is not very different from polling.c. HOWEVER, conceptually, as this code is meant to handle interrupts instead of polling, it is very different. The flow of control is handled by our microprocessor, rather than via an infinite loop that continually checks keyboard activity through software control. To implement this, we made our code more modular and pulled apart functionality for keyboards 1 and 2 from this infinite loop (to see how this flow of control is handled in execution, look at our hardware repository linked in the previous section). Also, our software accessed the software functionality for keyboards 1 and 2 via a CALL() and RETURN(). This allows us to save and restore the state of our microprocessor when an interrupt occurs. However, these CALLs are only accessed through a check to if an interrupt is not already occurring. This prevents an interrupt from interrupting and interrupt.
