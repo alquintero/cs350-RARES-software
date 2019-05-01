@@ -17,19 +17,19 @@ void HERA_main()
     CALL(FP_alt, busy_function)
     SET(R2, 1000)
     CALL(interrupt handler w/ thread 1)
-    SWI(opcode thread 1???)
+    SWI(opcode thread 1???) // SWI(0001) ?
 
     // thread 2
     CALL(FP_alt, busy_function)
     SET(R2, 2000)
     CALL(interrupt handler w/ thread 2)
-    SWI(opcode thread 2???)
+    SWI(opcode thread 2???) // SWI(0002) ?
 
     // thread 2
     CALL(FP_alt, busy_function)
     SET(R2, 3000)
     CALL(interrupt handler w/ thread 3)
-    SWI(opcode thread 3???)
+    SWI(opcode thread 3???) // SWI(0003) ?
 
   BR(operating_system)     // infinite loop. simulate os
 
@@ -59,6 +59,7 @@ void HERA_main()
     INC(R2, 1)
     STORE(R10, R2)
     INC(R2, 1)
+
   RETURN(FP_alt, PC_ret)
 
 
