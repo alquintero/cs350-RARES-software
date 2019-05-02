@@ -16,20 +16,20 @@ void HERA_main()
     // thread 1
     CALL(FP_alt, busy_function)
     SET(R2, 1000)
-    CALL(interrupt handler w/ thread 1)
-    SWI(opcode thread 1???) // SWI(0001) ?
+    CALL(FP_alt, interrupt_handler)
+    SWI(1)
 
     // thread 2
     CALL(FP_alt, busy_function)
     SET(R2, 2000)
-    CALL(interrupt handler w/ thread 2)
-    SWI(opcode thread 2???) // SWI(0002) ?
+    CALL(FP_alt, interrupt_handler)
+    SWI(2)
 
-    // thread 2
+    // thread 3
     CALL(FP_alt, busy_function)
     SET(R2, 3000)
-    CALL(interrupt handler w/ thread 3)
-    SWI(opcode thread 3???) // SWI(0003) ?
+    CALL(FP_alt, interrupt_handler)
+    SWI(3)
 
   BR(operating_system)     // infinite loop. simulate os
 
@@ -68,41 +68,35 @@ void HERA_main()
   RETURN(FP_alt, PC_ret)
 
 
-  // SAVES THE STATE IN RAM
-  // ASSUMES THE CURRENT THREAD NUMBER IS IN R2
+  // Puts the state back from RAM
+  // ASSUMES THE CURRENT RELEVANT RAM LOCATION IS IN R2
   LABEL(interrupt_handler_return)
-    // put all the registers into RAM, starting at location R2
-    STORE(R1, R2)
+    // put all the registers back
+    LOAD(R1, R2)
     INC(R2, 1)
-    STORE(R2, R2)
+    LOAD(R2, R2)
     INC(R2, 1)
-    STORE(R3, R2)
+    LOAD(R3, R2)
     INC(R2, 1)
-    STORE(R4, R2)
+    LOAD(R4, R2)
     INC(R2, 1)
-    STORE(R5, R2)
+    LOAD(R5, R2)
     INC(R2, 1)
-    STORE(R6, R2)
+    LOAD(R6, R2)
     INC(R2, 1)
-    STORE(R7, R2)
+    LOAD(R7, R2)
     INC(R2, 1)
-    STORE(R8, R2)
+    LOAD(R8, R2)
     INC(R2, 1)
-    STORE(R9, R2)
+    LOAD(R9, R2)
     INC(R2, 1)
-    STORE(R10, R2)
+    LOAD(R10, R2)
     INC(R2, 1)
 
-    // save flags
-    SAVEF(R3)
-    STORE(R3, R2)
-    INC(R2, 1)
+    // put the flags back
+    RSTRF(R2)
 
   RETURN(FP_alt, PC_ret)
-
-
-
-
 
   // BUSY HELPER FUNCTION TO CHANGE STATE
   LABEL(busy_function)
@@ -116,8 +110,6 @@ void HERA_main()
     MOVE(R2, R1) // output the value of R1 to terminal 1
     SET(R1, 0)
     CALL(FP_alt, putchar_ord)
-
-
 
   RETURN(FP_alt, PC_ret)
 
