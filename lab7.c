@@ -60,7 +60,47 @@ void HERA_main()
     STORE(R10, R2)
     INC(R2, 1)
 
+    // save flags
+    SAVEF(R3)
+    STORE(R3, R2)
+    INC(R2, 1)
+
   RETURN(FP_alt, PC_ret)
+
+
+  // SAVES THE STATE IN RAM
+  // ASSUMES THE CURRENT THREAD NUMBER IS IN R2
+  LABEL(interrupt_handler_return)
+    // put all the registers into RAM, starting at location R2
+    STORE(R1, R2)
+    INC(R2, 1)
+    STORE(R2, R2)
+    INC(R2, 1)
+    STORE(R3, R2)
+    INC(R2, 1)
+    STORE(R4, R2)
+    INC(R2, 1)
+    STORE(R5, R2)
+    INC(R2, 1)
+    STORE(R6, R2)
+    INC(R2, 1)
+    STORE(R7, R2)
+    INC(R2, 1)
+    STORE(R8, R2)
+    INC(R2, 1)
+    STORE(R9, R2)
+    INC(R2, 1)
+    STORE(R10, R2)
+    INC(R2, 1)
+
+    // save flags
+    SAVEF(R3)
+    STORE(R3, R2)
+    INC(R2, 1)
+
+  RETURN(FP_alt, PC_ret)
+
+
 
 
 
