@@ -39,3 +39,13 @@ In particular, compile the code in interrupts.c using Hassem. Then, place all co
 #### Conceptual description:
 
 In implementation, our code is not very different from polling.c. HOWEVER, conceptually, as this code is meant to handle interrupts instead of polling, it is very different. The flow of control is handled by our microprocessor, rather than via an infinite loop that continually checks keyboard activity through software control. To implement this, we made our code more modular and pulled apart functionality for keyboards 1 and 2 from this infinite loop (to see how this flow of control is handled in execution, look at our hardware repository linked in the previous section). Also, our software accessed the software functionality for keyboards 1 and 2 via a CALL() and RETURN(). This allows us to save and restore the state of our microprocessor when an interrupt occurs. However, these CALLs are only accessed through a check to if an interrupt is not already occurring. This prevents an interrupt from interrupting and interrupt.
+
+
+
+* For Lab 7 *
+
+ASSUMES THAT R7 IS A SPECIAL REGISTER THAT IS NOT TO BE CHANGED DURING THREAD EXECUTION! *
+
+Software calls SWI for the current thread (either SWI(1) or SWI(2) -- so both these SWI's need to be implemented in hardware). Then, in hardware, using the location in R7 (location 1000 or 2000, depending on thread), the hardware knows where to start saving the state in RAM. The hardware should jump in RAM to the interrupt_handler function (we have decided this will be location 1000 in ROM??). The hardware has to save the program counter for the thread! We can't do this in HERA.
+
+The interrupt_handler function has a function call to busy_function. The hardware should call busy_function a predetermined number of times (5 times?) by having some sort of counter that loops over the function a certain number of times. Once this number of times is met, the hardware should jump to interrupt_handler_return, which restores the state. Once the hardware is done restoring the state, the hardware should jump back to the correct place in the operating system (the line following the current SWI).
