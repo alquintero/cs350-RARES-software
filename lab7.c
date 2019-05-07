@@ -155,6 +155,7 @@ void HERA_main()
 
   // SAVES THE STATE IN RAM
   // ASSUMES THE CURRENT THREAD NUMBER IS IN R2
+  // in location 1000 in ROM
   LABEL(interrupt_store)
     // put all the registers into RAM, starting at location R2
     STORE(R1, R7)
@@ -192,6 +193,7 @@ void HERA_main()
 
   // Puts the state back from RAM
   // ASSUMES THE CURRENT RELEVANT RAM LOCATION IS IN R2
+  // in location 2000 in ROM
   LABEL(interrupt_load)
     //set the pointer back to the beginning of the place in RAM
     DEC(R7, 11)
