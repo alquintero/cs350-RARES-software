@@ -126,6 +126,7 @@ void HERA_main()
   INC(R7, 1)
 
   LABEL(operating_system)  // while(true)
+    SET(R1, 0)
 
     // general flow of control:
     // (1) store the values of the operating system (save the state that is being interrupted)
