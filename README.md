@@ -46,6 +46,26 @@ In implementation, our code is not very different from polling.c. HOWEVER, conce
 
 ASSUMES THAT R7 IS A SPECIAL REGISTER THAT IS NOT TO BE CHANGED DURING THREAD EXECUTION! *
 
-Software calls SWI for the current thread (either SWI(1) or SWI(2) -- so both these SWI's need to be implemented in hardware). Then, in hardware, using the location in R7 (location 1000 or 2000, depending on thread), the hardware knows where to start saving the state in RAM. The hardware should jump in RAM to the interrupt_handler function (we have decided this will be location 1000 in ROM??). The hardware has to save the program counter for the thread! We can't do this in HERA.
+Software calls SWI for the current thread (either SWI(1) or SWI(2) -- so both these SWI's need to be implemented in hardware). Then, in hardware, using the location in R7 (location 1000 or 2000, depending on thread), the hardware knows where to start saving the state in RAM. The hardware should jump in RAM to the interrupt_store function (we have decided this will be location 1000 in ROM). The hardware has to save the program counter for the thread! We can't do this in HERA. The interrupt_store function first saves the values of registers, then saves the flags (startiing at the respective location in RAM).
 
-The interrupt_handler function has a function call to busy_function. The hardware should call busy_function a predetermined number of times (5 times?) by having some sort of counter that loops over the function a certain number of times. Once this number of times is met, the hardware should jump to interrupt_handler_return, which restores the state. Once the hardware is done restoring the state, the hardware should jump back to the correct place in the operating system (the line following the current SWI).
+The interrupt_handler function has a function call to busy_function. The hardware should call busy_function a predetermined number of times (5 times) by having some sort of counter that loops over the function a certain number of times (this is arbitrary to make it so that threads do not execute forever). The busy_function outputs either 5 (for thread 1) or 10 (for thread 2), by calling the put_char function. Once this number of times is met, the hardware should jump to interrupt_load, which restores the state. It does this by using the unmodified value in R7, which goes to the respective location in RAM. Like the interrupt_store function, the interrupt_load function restores the registers, then the flags. Restoring the PC should be handled by the hardware. Once the hardware is done restoring the state, the hardware should jump back to the correct place in the operating system (the line following the current SWI) by using the restored PC + 1.
+
+OUTPUT FOR THE PROGRAM (in terminal 1):
+
+5
+10
+5
+10
+5
+10
+... (infinite)
+
+
+OVERALL FLOW OF THE PROGRAM:
+
+(1) store the values of the operating system (save the state that is being interrupted)
+(2) load the values of the current thread (prep the current thread)
+(3) run the thread
+(4) stop running the thread
+(5) store the values of the current thread (save the state of the thread after it has finished running)
+(6) load the values of the operating system (restore the state that was interrupted)
